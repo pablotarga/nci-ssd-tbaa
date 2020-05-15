@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  email: MyString
+  password_digest: MyString
+  last_access_at: 2020-05-15 17:13:20
+  last_access_ip: MyString
+  current_access_at: 2020-05-15 17:13:20
+  current_access_ip: MyString
+
+two:
+  name: MyString
+  email: MyString
+  password_digest: MyString
+  last_access_at: 2020-05-15 17:13:20
+  last_access_ip: MyString
+  current_access_at: 2020-05-15 17:13:20
+  current_access_ip: MyString
