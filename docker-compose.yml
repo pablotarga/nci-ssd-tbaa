@@ -1,0 +1,15 @@
+version: "3"
+services:
+  web:
+    image: nci-ssd-final-exam:latest
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/opt/app
+    command: ["rails", "s", "-b", "0.0.0.0", "-p", "80"]
+    environment:
+      RAILS_ENV: development
+      PORT: 3000
+      DOMAIN: localhost
+      SECRET_KEY_BASE: abc1234567
