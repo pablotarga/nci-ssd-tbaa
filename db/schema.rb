@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_121440) do
+ActiveRecord::Schema.define(version: 2020_05_17_141259) do
+
+  create_table "projects", force: :cascade do |t|
+    t.integer "advisor_id"
+    t.integer "student_id"
+    t.integer "status", default: 0, null: false
+    t.decimal "completion_rate", default: "0.0", null: false
+    t.date "due_at"
+    t.string "title"
+    t.text "description"
+    t.text "short_description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advisor_id"], name: "index_projects_on_advisor_id"
+    t.index ["due_at"], name: "index_projects_on_due_at"
+    t.index ["status"], name: "index_projects_on_status"
+    t.index ["student_id"], name: "index_projects_on_student_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"

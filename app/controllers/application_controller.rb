@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    redirect_to login_path(), notice: "Restrict Content: Authentication required!" unless current_user.present?
+    redirect_to login_path(), alert: "Restrict Content: Authentication required!" unless current_user.present?
   end
 
   def current_user

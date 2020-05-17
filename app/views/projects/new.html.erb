@@ -1,0 +1,10 @@
+
+<h1 class="d-flex w-100 align-items-center">
+  <span>New Project</span>
+  <span class="ml-auto"></span>
+  <%= link_to(content_tag(:i, nil, class: 'fas fa-fw fa-th-list'), projects_path, class: 'btn btn-light') %>
+</h1>
+
+<hr/>
+
+<%= render 'form' %>

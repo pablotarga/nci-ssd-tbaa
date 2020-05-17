@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
   resource :user, only: [:show, :create, :update]
+  resources :projects
 
   get '/about' => "pages#about"
-  root "pages#home"
+  root "projects#index"
 end

@@ -1,5 +1,10 @@
 class User < ApplicationRecord
+  has_many :projects, foreign_key: :advisor_id
+  has_many :students, through: :projects
 
+  has_many :submissions, -> { published }, class_name: 'Project', foreign_key: :student_id
+
+  # flag to run signup validations
   attr_accessor :signup
 
   # password hashing and salting using bcrypt gem
@@ -30,12 +35,18 @@ class User < ApplicationRecord
   # raill accepts multiple set of validations (like on this example I'm using uniqueness and format)
   validates :email, uniqueness: true, format: {with: EMAIL_REGEX}, allow_blank: true
 
+  # validates that signups cannot choose role admin (only permited via console)
   validate :ensure_role_is_permitted_on_signup, on: :create
+
+  # helper to format the output
+  def name_with_email
+    "#{name} (#{email})"
+  end
 
   private
 
   def ensure_role_is_permitted_on_signup
-    errors.add(:role, 'not accepted') if signup && !(student? or advisor?)
+    errors.add(:role, 'not accepted') if signup && !(student? || advisor?)
   end
 
 end

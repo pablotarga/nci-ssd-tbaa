@@ -11,7 +11,7 @@
 
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav w-100">
-          <%= nav_link 'Home', root_path %>
+          <%= nav_link 'Projects', root_path %>
           <%= nav_link 'About', about_path %>
           <% if current_user.present? %>
             <%= nav_link 'Logout', logout_path, class: 'text-danger', spaced: true, method: :delete %>

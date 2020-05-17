@@ -47,7 +47,15 @@ body{
     @extend .text-danger;
   }
 
-  input{
+  input.form-control, textarea.form-control{
     @extend .is-invalid;
   }
+}
+
+
+.task-subform-description{
+  margin-right: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

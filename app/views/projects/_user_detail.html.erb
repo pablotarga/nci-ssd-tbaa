@@ -1,0 +1,6 @@
+<% if user_detail.present? %>
+<%= user_detail.name %><br/>
+<%= content_tag :small, user_detail.email, class: 'text-mutted' %>
+<% else %>
+N/A
+<% end %>
