@@ -11,6 +11,7 @@ body{
   color: #222c34;
   font-family: 'Lato', sans-serif;
   padding-top: 70px;
+  padding-bottom: 15px;
 
   &.full-page{
     background: linear-gradient(to top right, #1FA2FF 10%, #12D8FA 65%, #A6FFCB 125%);
@@ -19,4 +20,34 @@ body{
 
 .navbar{
   z-index: 1040;
+}
+
+
+.full-page{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 768px){
+    height: 100vh !important;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+
+  .card{
+    width:100%;
+    max-width: 400px;
+  }
+}
+
+.field_with_errors{
+  label{
+    @extend .text-danger;
+  }
+
+  input{
+    @extend .is-invalid;
+  }
 }

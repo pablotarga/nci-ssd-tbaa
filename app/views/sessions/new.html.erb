@@ -1,13 +1,12 @@
 <% provide(:title, 'Login') %>
 
-<div id="session_new" class="vh-100 d-flex justify-content-center align-items-center fixed-top">
-
+<div class="full-page">
   <div class="card">
     <div class="card-header">Login</div>
     <div class="card-body">
-      <%= content_tag :div, flash[:alert], class: 'alert alert-danger' if flash[:alert].present? %>
+      <%= render 'shared/alerts' %>
 
-      <%= form_with(model: User.new, url: session_path) do |f| %>
+      <%= form_with(model: @user, url: session_path) do |f| %>
 
         <div class="form-group">
           <%= f.label :email%>
@@ -25,5 +24,4 @@
       <% end %>
     </div>
   </div>
-
 </div>

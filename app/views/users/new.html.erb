@@ -1,0 +1,49 @@
+<% provide(:title, 'Registration') %>
+
+<div class="full-page">
+  <div class="card">
+    <div class="card-header">Register</div>
+    <div class="card-body">
+      <%= render 'shared/alerts' %>
+
+      <%= form_with(model: @user, url: user_path) do |f| %>
+
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <label>Role</label>
+          <div class="form-check">
+            <%= f.radio_button :role, 'student', class:'form-check-input' %>
+            <%= f.label :role_student, 'Student', class:'form-check-label' %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :role, 'advisor', class:'form-check-input' %>
+            <%= f.label :role_advisor, 'Advisor', class:'form-check-label' %>
+          </div>
+          <div class="form-check">
+            <%= f.radio_button :role, 'admin', class:'form-check-input' %>
+            <%= f.label :role_admin, 'Admin (not accepted)', class:'form-check-label disabled' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit 'Register', class: 'btn btn-primary' %>
+          <%= link_to 'Login', login_path, class: 'btn btn-link' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
