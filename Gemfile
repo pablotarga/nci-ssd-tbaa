@@ -20,6 +20,8 @@ gem 'mini_racer', platforms: :ruby
 gem 'coffee-rails', '~> 4.2'
 gem 'bootstrap'
 gem 'jquery-rails'
+gem "cocoon"
+
 
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'

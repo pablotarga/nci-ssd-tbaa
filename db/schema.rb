@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_141259) do
+ActiveRecord::Schema.define(version: 2020_05_17_210512) do
 
   create_table "projects", force: :cascade do |t|
     t.integer "advisor_id"
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 2020_05_17_141259) do
     t.index ["due_at"], name: "index_projects_on_due_at"
     t.index ["status"], name: "index_projects_on_status"
     t.index ["student_id"], name: "index_projects_on_student_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.integer "project_id"
+    t.string "title", null: false
+    t.integer "priority", default: 2, null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["priority"], name: "index_tasks_on_priority"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
+    t.index ["status"], name: "index_tasks_on_status"
   end
 
   create_table "users", force: :cascade do |t|

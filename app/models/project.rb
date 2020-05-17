@@ -2,6 +2,9 @@ class Project < ApplicationRecord
   belongs_to :advisor, class_name: 'User'
   belongs_to :student, class_name: 'User', optional: true
 
+  has_many :tasks, dependent: :destroy
+  accepts_nested_attributes_for :tasks, reject_if: ->(a){ a['title'].blank? }, allow_destroy: true
+
   delegate :name, :email, to: :advisor, prefix: true
   delegate :name, :email, to: :student, prefix: true
 

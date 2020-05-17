@@ -1,0 +1,43 @@
+<%= content_tag :div, id: "project_#{f.object_name.parameterize.underscore}_task_fields", class: 'task_fields' do %>
+  <div class="form-group">
+    <div class="d-flex w-100 align-items-center">
+      <span class="task-subform-description">
+        <span><%= f.object.title %></span><br/>
+        <small>
+          <span class="badge badge-pill badge-info"><%= f.object.priority.humanize.upcase %></span>
+          <span class="badge badge-pill badge-info"><%= f.object.status.humanize.upcase %></span>
+        </small>
+      </span>
+      <%= content_tag :span, content_tag(:i, nil, class: 'fas fa-fw fa-pencil-alt'), class: 'btn btn-light', data: {target: "#project_#{f.object_name.parameterize.underscore}_task_modal", toggle: "modal"} %>
+      <%= link_to_remove_association content_tag(:i, nil, class: 'fas fa-fw fa-trash'), f, {class: 'btn btn-danger ml-2' , wrapper_class: "task_fields", tabindex: -1} %>
+    </div>
+  </div>
+
+  <%= content_tag(:div, class: 'modal fade', id: "project_#{f.object_name.parameterize.underscore}_task_modal", tabindex: -1, role: 'dialog', data: {backdrop: 'static'} ) do %>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :status %>
+            <%= f.select :status, Task.statuses.keys.map{|e| [e.humanize, e]}, {prompt: true}, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :priority %>
+            <%= f.select :priority, Task.priorities.keys.map{|e| [e.humanize, e]}, {prompt: true}, class: 'form-control' %>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-block btn-lg" data-dismiss="modal">Done</button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

@@ -70,6 +70,7 @@ class ProjectsController < RestrictAccessController
       :student_id,
       :due_at,
       :status,
+      tasks_attributes: [:id, :title, :status, :priority, :_destroy]
     ]
   end
 
