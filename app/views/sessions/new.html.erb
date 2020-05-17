@@ -1,0 +1,29 @@
+<% provide(:title, 'Login') %>
+
+<div id="session_new" class="vh-100 d-flex justify-content-center align-items-center fixed-top">
+
+  <div class="card">
+    <div class="card-header">Login</div>
+    <div class="card-body">
+      <%= content_tag :div, flash[:alert], class: 'alert alert-danger' if flash[:alert].present? %>
+
+      <%= form_with(model: User.new, url: session_path) do |f| %>
+
+        <div class="form-group">
+          <%= f.label :email%>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password%>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit 'Enter', class: 'btn btn-primary' %>
+          <%= link_to 'New Account', register_path, class: 'btn btn-link' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

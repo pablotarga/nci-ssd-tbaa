@@ -21,7 +21,7 @@ class AuthService < ApplicationService
   end
 
   # authenticate user by email and password
-  def by_email_and_password(email, password)
+  def by_email_and_password(email:, password:)
     clear_user
     return false unless email.present? && password.present?
 
@@ -32,6 +32,10 @@ class AuthService < ApplicationService
     by_user(user)
   end
 
+  def logout!
+    clear_user
+    set_cookie
+  end
   private
 
   def clear_user
@@ -50,10 +54,15 @@ class AuthService < ApplicationService
   def set_cookie
     return unless @cookies.present?
 
-    @cookies.encrypted[:user_id] = {
-      value: user.id.to_s,
-      expires: 1.year,
-      httponly: true # hide from javascript
-    }
+    if user.present?
+      @cookies.encrypted[:user_id] = {
+        value: user.try(:id).to_s,
+        expires: 1.year,
+        httponly: true, # hide from javascript
+        domain: APP_DOMAIN
+      }
+    else
+      @cookies.delete :user_id
+    end
   end
 end
