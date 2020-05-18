@@ -30,5 +30,20 @@ module ApplicationHelper
     @recognized_paths[path]
   end
 
+  def project_prog_bar(project)
+    content_tag(:div, class: "progress project-#{project.id}-progress") do
+      content_tag(:div, nil,
+        class: 'progress-bar progress-bar-striped progress-bar-animated bg-info',
+        role: 'progressbar',
+        aria: {valuenow: project.completion_percentage, valuemin: 0, valuemax: 100},
+        style: "width: #{project.completion_percentage}%"
+      )
+    end
+  end
+
+  def project_prog_label(project)
+    content_tag(:span, "#{project.completion_percentage}%", class: "project-#{project.id}-progress-label")
+  end
+
 
 end

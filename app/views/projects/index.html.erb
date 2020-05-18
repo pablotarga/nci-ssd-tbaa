@@ -25,14 +25,17 @@
         <% @list.each do |el|%>
         <tr>
           <td class="text-nowrap d-none d-md-table-cell"><%= el.id %></td>
-          <td class="text-nowrap"><%= render partial: 'user_detail', object: current_user.advisor? ? el.student : el.advisor %></td>
+          <td class="text-nowrap"><%= render partial: 'shared/user_detail', object: current_user.advisor? ? el.student : el.advisor %></td>
           <td class="text-nowrap">
             <%= el.title %><br/>
             <%= content_tag :small, el.short_description, class: 'text-mutted' %>
           </td>
           <td class="text-center text-nowrap"><%= el.due_at.present? ? (el.due_at.future? ? distance_of_time_in_words_to_now(el.due_at) : el.due_at.strftime('%d/%m/%Y') ) : 'N/A' %></td>
           <td class="text-center text-nowrap"><%= el.status.humanize %></td>
-          <td class="text-center text-nowrap"><%= el.completion_rate %></td>
+          <td class="text-center text-nowrap">
+            <%= project_prog_label(el) %>
+            <%= project_prog_bar(el) %>
+          </td>
           <td class="text-center text-nowrap">
             <%= link_to(content_tag(:i, nil, class: 'fas fa-fw fa-info'), project_path(el), class: 'btn btn-light') %>
             <%= link_to(content_tag(:i, nil, class: 'fas fa-fw fa-pencil-alt'), edit_project_path(el), class: 'btn btn-light') %>

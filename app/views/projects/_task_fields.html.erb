@@ -8,12 +8,12 @@
           <span class="task_fields_status badge badge-pill badge-info"><%= f.object.status.humanize.upcase %></span>
         </small>
       </span>
-      <%= content_tag :span, content_tag(:i, nil, class: 'fas fa-fw fa-pencil-alt'), class: 'btn btn-light', data: {target: "#project_#{f.object_name.parameterize.underscore}_task_modal", toggle: "modal"} %>
+      <%= content_tag :span, content_tag(:i, nil, class: 'fas fa-fw fa-pencil-alt'), class: 'btn btn-light', data: {target: "##{f.object_name.parameterize.underscore}_task_modal", toggle: "modal"} %>
       <%= link_to_remove_association content_tag(:i, nil, class: 'fas fa-fw fa-trash'), f, {class: 'btn btn-danger ml-2' , wrapper_class: "task_fields", tabindex: -1} %>
     </div>
   </div>
 
-  <%= content_tag(:div, class: 'modal fade', id: "project_#{f.object_name.parameterize.underscore}_task_modal", tabindex: -1, role: 'dialog', data: {backdrop: 'static'} ) do %>
+  <%= content_tag(:div, class: 'modal fade', id: "#{f.object_name.parameterize.underscore}_task_modal", tabindex: -1, role: 'dialog', data: {backdrop: 'static'} ) do %>
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-body">
@@ -35,7 +35,10 @@
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success btn-block btn-lg" data-dismiss="modal">Done</button>
+          <button type="button" class="btn btn-success btn-block btn-lg" data-dismiss="modal">
+            Done
+            <span class="shortcut">[Enter]</span>
+          </button>
         </div>
       </div>
     </div>

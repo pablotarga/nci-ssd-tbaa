@@ -59,3 +59,14 @@ body{
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.progress{
+  height: 6px;
+}
+
+
+.shortcut{
+  font-size: .6em;
+  @extend .badge;
+  @extend .badge-light;
+}

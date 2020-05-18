@@ -60,16 +60,31 @@
   (function(){
     let form = $('form');
 
-    form.on('input', '.task_fields', function(){
-      let $this = $(this);
-      let radix = this.id.replace(/_task_fields$/, '');
-      let tStatus = $(`#${radix}_status option:selected`).text();
-      let tPriority = $(`#${radix}_priority option:selected`).text();
-      let tTitle = $(`#${radix}_title`).val();
+    form
+      .on('input', '.task_fields', function(){
+        let $this = $(this);
+        let radix = this.id.replace(/_task_fields$/, '');
+        let tStatus = $(`#${radix}_status option:selected`).text();
+        let tPriority = $(`#${radix}_priority option:selected`).text();
+        let tTitle = $(`#${radix}_title`).val();
 
-      $this.find('.task_fields_title').text(tTitle);
-      $this.find('.task_fields_status').text(tStatus.toUpperCase());
-      $this.find('.task_fields_priority').text(tPriority.toUpperCase());
-    })
-  })()
+        $this.find('.task_fields_title').text(tTitle);
+        $this.find('.task_fields_status').text(tStatus.toUpperCase());
+        $this.find('.task_fields_priority').text(tPriority.toUpperCase());
+      })
+      .on('shown.bs.modal', '.task_fields .modal', function(e){
+
+        $(this).find('input').focus();
+      })
+      .on('keypress', '.task_fields .modal',function(e) {
+          if(e.which == 13) {
+              e.stopPropagation();
+              e.preventDefault();
+              $(this).modal('hide');
+          }
+      })
+      .on('cocoon:before-insert', '#tasks', function(e, insertedItem, originalEvent) {
+        insertedItem.find('.modal').modal('show');
+      });
+  })();
 </script>

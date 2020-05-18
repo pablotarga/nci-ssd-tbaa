@@ -24,6 +24,10 @@ class Project < ApplicationRecord
     !draft?
   end
 
+  def completion_percentage
+    (completion_rate * 100).round
+  end
+
   private
 
   def set_short_description

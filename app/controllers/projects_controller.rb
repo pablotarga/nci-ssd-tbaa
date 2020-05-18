@@ -26,6 +26,7 @@ class ProjectsController < RestrictAccessController
     project = current_user.projects.new(project_params)
 
     if project.save
+      Project::CompletionService.new(project).calculate!
       redirect_to(projects_path, notice: 'Project created with success!')
     else
       flash[:project_params] = project_params
@@ -35,6 +36,7 @@ class ProjectsController < RestrictAccessController
 
   def update
     if project.update_attributes(project_params)
+      Project::CompletionService.new(project).calculate!
       redirect_to(projects_path, notice: 'Project updated with success!')
     else
       flash[:project_params] = project_params
