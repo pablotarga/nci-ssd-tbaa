@@ -1,11 +1,11 @@
-<%= content_tag :div, id: "project_#{f.object_name.parameterize.underscore}_task_fields", class: 'task_fields' do %>
+<%= content_tag :div, id: "#{f.object_name.parameterize.underscore}_task_fields", class: 'task_fields' do %>
   <div class="form-group">
     <div class="d-flex w-100 align-items-center">
       <span class="task-subform-description">
-        <span><%= f.object.title %></span><br/>
+        <span class="task_fields_title"><%= f.object.title %></span><br/>
         <small>
-          <span class="badge badge-pill badge-info"><%= f.object.priority.humanize.upcase %></span>
-          <span class="badge badge-pill badge-info"><%= f.object.status.humanize.upcase %></span>
+          <span class="task_fields_priority badge badge-pill badge-info"><%= f.object.priority.humanize.upcase %></span>
+          <span class="task_fields_status badge badge-pill badge-info"><%= f.object.status.humanize.upcase %></span>
         </small>
       </span>
       <%= content_tag :span, content_tag(:i, nil, class: 'fas fa-fw fa-pencil-alt'), class: 'btn btn-light', data: {target: "#project_#{f.object_name.parameterize.underscore}_task_modal", toggle: "modal"} %>

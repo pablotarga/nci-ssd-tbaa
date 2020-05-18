@@ -54,3 +54,22 @@
   </div>
   <%= f.submit "Save", class: 'btn btn-success btn-lg mt-3' %>
 <% end %>
+
+
+<script>
+  (function(){
+    let form = $('form');
+
+    form.on('input', '.task_fields', function(){
+      let $this = $(this);
+      let radix = this.id.replace(/_task_fields$/, '');
+      let tStatus = $(`#${radix}_status option:selected`).text();
+      let tPriority = $(`#${radix}_priority option:selected`).text();
+      let tTitle = $(`#${radix}_title`).val();
+
+      $this.find('.task_fields_title').text(tTitle);
+      $this.find('.task_fields_status').text(tStatus.toUpperCase());
+      $this.find('.task_fields_priority').text(tPriority.toUpperCase());
+    })
+  })()
+</script>
