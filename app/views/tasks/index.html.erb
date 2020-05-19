@@ -1,0 +1,26 @@
+
+<h1 class="d-flex w-100 align-items-center">
+  <span>Tasks</span>
+</h1>
+
+<hr/>
+
+<% if @list.present? %>
+  <div class="table-responsive">
+    <table class="table mt-4">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" class="text-nowrap">Task</th>
+          <th scope="col" class="text-nowrap text-center">Priority</th>
+          <th scope="col" class="text-nowrap text-center">Status</th>
+          <th scope="col" class="text-nowrap text-center">Due in</th>
+          <th scope="col" class="text-nowrap text-center">Project</th>
+          <th scope="col" class="text-nowrap text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: 'shared/task_row', collection: @list %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

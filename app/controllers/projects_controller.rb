@@ -67,6 +67,11 @@ class ProjectsController < RestrictAccessController
 
   private
 
+  def status_service
+    @status_service ||= Task::StatusService.new(user: current_user)
+  end
+  helper_method :status_service
+
   # extract base64 params from the query params
   def load_prev_params
     prev_params = unpack_params

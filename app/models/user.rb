@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   has_many :projects, foreign_key: :advisor_id
   has_many :students, through: :projects
+  has_many :project_tasks, through: :projects, source: :tasks
 
   has_many :submissions, -> { published }, class_name: 'Project', foreign_key: :student_id
+  has_many :submission_tasks, through: :submissions, source: :tasks
 
   # flag to run signup validations
   attr_accessor :signup
@@ -41,6 +43,10 @@ class User < ApplicationRecord
   # helper to format the output
   def name_with_email
     "#{name} (#{email})"
+  end
+
+  def tasks
+    advisor? ? project_tasks : submission_tasks
   end
 
   private

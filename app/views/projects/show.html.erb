@@ -39,24 +39,22 @@
     </div>
   </div>
 
-  <div class="col-md-12">
-    <div class="form-group">
-      <b>Tasks</b><br />
-      <ul class="list-unstyled">
-        <% project.tasks.displayable.order(:status).each do |t| %>
-        <li class="mt-3 d-flex w-100 align-items-center">
-
-          <span class="task-subform-description">
-            <%= t.title %>
-          </span>
-          <span class="ml-auto text-nowrap">
-            <%= content_tag :span, t.status.humanize, class: 'badge badge-pill badge-info' %>
-            <%= content_tag :span, t.priority.humanize, class: 'badge badge-pill badge-info' %>
-          </span>
-        </li>
-        <% end %>
-      </ul>
-
+  <div class="col-md-12 mt-5">
+    <div class="table-responsive">
+      <table class="table mt-4">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" class="text-nowrap">Task</th>
+            <th scope="col" class="text-nowrap text-center">Priority</th>
+            <th scope="col" class="text-nowrap text-center">Status</th>
+            <th scope="col" class="text-nowrap text-center">Due in</th>
+            <th scope="col" class="text-nowrap text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: 'shared/task_row', collection: project.tasks.displayable.order(:status) %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

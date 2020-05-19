@@ -5,7 +5,16 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
   resource :user, only: [:show, :create, :update]
-  resources :projects
+
+  resources :projects do
+    resources :tasks, only: [] do
+      put '/:status', action: 'update', on: :member, as: :change
+    end
+  end
+
+  resources :tasks, only: [:index] do
+    put '/:status', action: 'update', on: :member, as: :change
+  end
 
   get '/about' => "pages#about"
   root "projects#index"

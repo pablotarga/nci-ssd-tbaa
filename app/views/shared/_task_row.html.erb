@@ -1,0 +1,17 @@
+<tr class="task-row-<%= task_row.id %>">
+  <td class="text-nowrap"><%= task_row.title %></td>
+  <td class="text-nowrap"><%= content_tag :span, task_row.priority.humanize.upcase, class: 'badge badge-pill badge-info' %></td>
+  <td class="text-nowrap"><%= content_tag :span, task_row.status.humanize.upcase, class: 'badge badge-pill badge-info' %></td>
+  <td class="text-center text-nowrap"><%= task_row.due_at.present? ? (task_row.due_at.future? ? distance_of_time_in_words_to_now(task_row.due_at) : task_row.due_at.strftime('%d/%m/%Y') ) : 'N/A' %></td>
+  <% unless project.present?%>
+  <td class="text-center text-nowrap">
+    <%= link_to project_prog_label(task_row.project), project_path(task_row.project) %>
+    <%= project_prog_bar(task_row.project) %>
+  </td>
+  <% end %>
+  <td class="text-center text-nowrap">
+    <% status_service.possible_transitions_for(task_row).each do |status| %>
+      <%= link_to(status.humanize.upcase, (project.present? ? change_project_task_path(project, task_row, status) : change_task_path(task_row, status)), method: :put, remote: true, class: 'btn btn-light') %>
+    <% end %>
+  </td>
+</tr>
