@@ -7,9 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create([
-  {name: 'Divyaa Manimaran Elango', email: 'divyaamanimaran.elango@ncirl.ie', role: 'advisor', password: SecureRandom.urlsafe_base64(4)},
-  {name: 'Alan John', email: 'aj@student.ncirl.ie', role: 'student', password: SecureRandom.urlsafe_base64(4)},
-  {name: 'Mark', email: 'mark@student.ncirl.ie', role: 'student', password: SecureRandom.urlsafe_base64(4)},
-  {name: 'Marie', email: 'marie@student.ncirl.ie', role: 'student', password: SecureRandom.urlsafe_base64(4)},
-  {name: 'Emily', email: 'emily@student.ncirl.ie', role: 'student', password: SecureRandom.urlsafe_base64(4)},
+  {name: 'Advisor John', email: 'advisor1@ncirl.ie', role: 'advisor', password: '123'},
+  {name: 'Advisor Ellen', email: 'advisor2@ncirl.ie', role: 'advisor', password: '123'},
+  {name: 'Alan', email: 'aj@student.ncirl.ie', role: 'student', password: '123'},
+  {name: 'Cathal', email: 'cathal@student.ncirl.ie', role: 'student', password: '123'},
+  {name: 'Marie', email: 'marie@student.ncirl.ie', role: 'student', password: '123'},
+  {name: 'Emily', email: 'emily@student.ncirl.ie', role: 'student', password: '123'},
 ])

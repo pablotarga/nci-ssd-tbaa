@@ -1,1 +1,113 @@
-<h1>About page</h1>
+<% provide(:title){ 'About' }%>
+
+<h1>SSD - TBAA</h1>
+
+<div class="row mt-5">
+  <div class="col-md-2">
+    <div class="card">
+      <%= image_tag("profile-nci.jpg", class: 'card-img-top') %>
+      <div class="card-body">
+        <h5 class="card-title">Pablo Targa</h5>
+        <h6 class="card-subtitle mb-2 text-muted">x19183500</h6>
+
+        <div class="d-flex align-items-center">
+          <%= link_to "https://www.linkedin.com/in/pablotarga/" do %>
+          <i class="fab fa-linkedin fa-2x"></i>
+          <% end  %>
+
+          <%= link_to "mailto:x19183500@student.ncirl.ie", class: 'ml-2' do %>
+          <i class="fas fa-at fa-2x"></i>
+          <% end  %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h3>Project</h3>
+
+    <h5>
+      Industry: Education / Sub-area: Productivity (Projects – Tasks)
+    </h5>
+
+    <p>For this project I implemented a software to handle Final Project submissions and progress tracking. The system consist in the following models:</p>
+
+    <p><b>Advisor (User)</b> can create a project and assign students to their projects. Only an advisor can include new Tasks to the project and mark then as completed or rejected.</p>
+
+    <p><b>Student (User)</b> can list its own projects (current and previous), can list the tasks attached to them and can change certain status of the task, like: <code>in_progress</code>, <code>review</code> and <code>done</code>.
+    </p>
+
+    <p><b>Project</b> belongs to an Advisor and to a Student, has many tasks and some attributes like title, description status and due_at</p>
+
+    <p><b>Task</b> belongs to a Project, they have their own title, due_at, status and priority, and the can be added to the project via nested_attributes.</p>
+
+    <h3 class="mt-5">
+      Technologies Used
+    </h3>
+
+    <p>
+      Here are some tools and technologies that can be observed in the Project:
+    </p>
+
+    <ul>
+      <li>Ruby on Rails</li>
+      <li>MVC</li>
+      <li>Service Layer</li>
+      <li>Turbolinks and rails-ujs</li>
+      <li>ActiveSupport::Concern</li>
+      <li>ApplicationCable (WebSockets)</li>
+      <li>Bcrypt gem</li>
+      <li>Strong Parameters</li>
+      <li>Keyword Arguments</li>
+      <li>Encrypted httponly cookies</li>
+      <li>Base64 encode/decode</li>
+      <li>jQuery</li>
+      <li>CoffeeScript</li>
+      <li>Bootstrap</li>
+      <li>Fontawesome</li>
+      <li>Docker (Containers)</li>
+    </ul>
+
+    <ul class="list-unstyled">
+      <li><b>Versions:</b></li>
+      <li>ruby 2.5.7p206 (2019-10-01 revision 67816) [x86_64-linux]</li>
+      <li>Rails 5.2.4.2</li>
+    </ul>
+
+    <p>To minimize conflicts and avoid misconfigurations I provided a Dockerfile + docker-compose.yml files.</p>
+
+    <h4>Installation via Docker</h4>
+    <div class="alert alert-warning">
+      <div class="d-flex align-items-center">
+        <i class="fas fa-exclamation-triangle mr-3 fa-2x"></i>
+        It is not mandatory to run the server via Docker. But it is easier and conflict free related to libs/OS versions.
+      </div>
+    </div>
+
+    <div class="alert alert-info">
+      <div class="d-flex align-items-center">
+        <i class="fab fa-docker mr-3 fa-2x"></i>
+        Having Docker up and running is a pre-requisite to follow these steps.
+        You can install it here: <%= link_to "Get Docker", 'https://docs.docker.com/get-docker/', target: '_blank', class: 'alert-link ml-1' %>
+      </div>
+    </div>
+
+    <p>
+      <b>Step 1</b><br />
+      Install the container and configure the enviroment based on the Dockerfile (ruby, rails, bundler and gems).<br />
+      <code>$ docker-compose build</code>
+    </p>
+
+    <p>
+      <b>Step 2</b><br />
+      Setup the database, load db/schema.rb and seed.<br />
+      <code>$ docker-compose run web rails db:setup</code>
+    </p>
+
+    <p>
+      <b>Step 3</b><br />
+      Run the server.<br />
+      <code>$ docker-compose up web</code>
+    </p>
+  </div>
+</div>

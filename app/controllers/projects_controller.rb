@@ -6,7 +6,7 @@ class ProjectsController < RestrictAccessController
   before_action :must_be_advisor, except: [:index, :show]
 
   # use method from application controller to unpack params from the url and populate record with info
-  before_action :load_prev_params, only: [:edit, :new]
+  before_action :load_prev_params, only: [:edit]
 
   # list projects, will filter accordingly the current user role
   def index
@@ -16,6 +16,7 @@ class ProjectsController < RestrictAccessController
   # initialize a new object to build the the form
   def new
     @project = current_user.projects.new
+    load_prev_params
   end
 
   # action to load the edit form, nothing if called because before_actions are loading and preparing the record
