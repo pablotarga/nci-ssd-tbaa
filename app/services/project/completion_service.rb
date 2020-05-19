@@ -10,7 +10,10 @@ class Project
       done = project.tasks.finished.count.to_f
 
       rate = total == 0 ? 0 : (done / total)
-      project.update_attribute :completion_rate, rate
+      return false unless project.update_attribute :completion_rate, rate
+
+      ActionCable.server.broadcast 'projects_channel', project.slice(:id, :completion_percentage)
+      return true
     end
   end
 end

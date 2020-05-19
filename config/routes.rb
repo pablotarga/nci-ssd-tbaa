@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   get '/about' => "pages#about"
   root "projects#index"
+
+  mount ActionCable.server => '/cable'
 end
