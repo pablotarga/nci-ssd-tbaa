@@ -38,8 +38,8 @@
           </td>
           <td class="text-center text-nowrap">
             <%= link_to(content_tag(:i, nil, class: 'fas fa-fw fa-info'), project_path(el), class: 'btn btn-light') %>
-            <%= link_to(content_tag(:i, nil, class: 'fas fa-fw fa-pencil-alt'), edit_project_path(el), class: 'btn btn-light') %>
-            <%= link_to(content_tag(:i, nil, class: 'fas fa-fw fa-trash'), project_path(el), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger') %>
+            <%= link_to(content_tag(:i, nil, class: 'fas fa-fw fa-pencil-alt'), edit_project_path(el), class: 'btn btn-light') if can_edit_project? %>
+            <%= link_to(content_tag(:i, nil, class: 'fas fa-fw fa-trash'), project_path(el), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger') if can_edit_project?%>
           </td>
         </tr>
         <% end %>

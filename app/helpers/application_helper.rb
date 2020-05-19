@@ -17,6 +17,10 @@ module ApplicationHelper
     current_user.try(:advisor?) || current_user.try(:admin?)
   end
 
+  def can_edit_project?
+    current_user.try(:advisor?) || current_user.try(:admin?)
+  end
+
   def is_current_path?(path)
     request_controller, _ = recognize_path(request.path)
     query_controller, _ = recognize_path(path)

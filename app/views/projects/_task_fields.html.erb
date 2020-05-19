@@ -8,7 +8,7 @@
           <span class="task_fields_status badge badge-pill badge-info"><%= f.object.status.humanize.upcase %></span>
         </small>
       </span>
-      <%= content_tag :span, content_tag(:i, nil, class: 'fas fa-fw fa-pencil-alt'), class: 'btn btn-light', data: {target: "##{f.object_name.parameterize.underscore}_task_modal", toggle: "modal"} %>
+      <%= content_tag :span, content_tag(:i, nil, class: 'fas fa-fw fa-pencil-alt'), class: "btn btn-light #{'pulse-error' if f.object.errors.present? }" , data: {target: "##{f.object_name.parameterize.underscore}_task_modal", toggle: "modal"} %>
       <%= link_to_remove_association content_tag(:i, nil, class: 'fas fa-fw fa-trash'), f, {class: 'btn btn-danger ml-2' , wrapper_class: "task_fields", tabindex: -1} %>
     </div>
   </div>
@@ -31,6 +31,11 @@
           <div class="form-group">
             <%= f.label :priority %>
             <%= f.select :priority, Task.priorities.keys.map{|e| [e.humanize, e]}, {prompt: true}, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :due_at %>
+            <%= f.date_field :due_at, class: 'form-control' %>
           </div>
 
         </div>

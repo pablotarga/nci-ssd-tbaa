@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  include Schedulable
   belongs_to :project
   has_one :advisor, through: :project
   has_one :student, through: :project
